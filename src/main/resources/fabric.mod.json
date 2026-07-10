@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "murdermysteryhelper",
+  "version": "${version}",
+  "name": "MurderMysteryHelper",
+  "description": "a helper to play MurderMystery",
+  "authors": [],
+  "contact": {},
+  "license": "GPL-3.0",
+  "icon": "assets/murdermysteryhelper/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-datagen": [
+      "org.chxjj.client.murdermysteryhelperDataGenerator"
+    ],
+    "client": [
+      "org.chxjj.client.murdermysteryhelperClient"
+    ],
+    "main": [
+      "org.chxjj.murdermysteryhelper"
+    ]
+  },
+  "mixins": [
+    "murdermysteryhelper.mixins.json",
+    {
+      "config": "murdermysteryhelper.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-language-kotlin": ">=${kotlin_loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
