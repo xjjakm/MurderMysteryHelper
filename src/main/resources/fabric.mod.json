@@ -4,10 +4,16 @@
   "version": "${version}",
   "name": "MurderMysteryHelper",
   "description": "A helper to play MurderMystery - detects murderers with swords and detectives with bows",
-  "authors": [],
-  "contact": {},
+  "authors": [
+    "chxjj"
+  ],
+  "contact": {
+    "homepage": "https://github.com/xjjakm/MurderMysteryHelper",
+    "sources": "https://github.com/xjjakm/MurderMysteryHelper",
+    "issues": "https://github.com/xjjakm/MurderMysteryHelper/issues"
+  },
   "license": "GPL-3.0",
-  "icon": "assets/murdermysteryhelper/icon.png",
+  "icon": "assets/mh/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -15,6 +21,9 @@
     ],
     "main": [
       "org.chxjj.mh.main.murdermysteryhelper"
+    ],
+    "modmenu": [
+      "org.chxjj.mh.client.config"
     ]
   },
   "mixins": [
@@ -29,6 +38,7 @@
     "fabric-language-kotlin": ">=${kotlin_loader_version}",
     "fabric-api": "*",
     "yet_another_config_lib_v3": ">=3.9.5",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "${minecraft_version}",
+    "modmenu": ">=${modmenu_version}"
   }
 }

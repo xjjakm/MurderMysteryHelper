@@ -1,4 +1,4 @@
-name: Publish Development Build
+name: Build
 on: push
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
           java-version: 25
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: chmod +x./gradlew build
 
       - name: capture build artifacts
         uses: actions/upload-artifact@v4

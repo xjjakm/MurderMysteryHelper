@@ -38,7 +38,20 @@ fabricApi {
 }
 
 repositories {
-    maven("https://maven.isxander.dev/releases")
+    maven("https://maven.isxander.dev/releases") {
+        name = "Xander Maven"
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = uri("https://api.modrinth.com/maven")
+            }
+        }
+        filter {
+            includeGroup("maven.modrinth")
+        }
+    }
 }
 
 dependencies {
@@ -46,7 +59,7 @@ dependencies {
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
     implementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
     implementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_loader_version")}")
-
+    implementation("maven.modrinth:modmenu:${project.property("modmenu_version")}")
     implementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
     implementation("dev.isxander:yet-another-config-lib:${project.property("yacl_version")}")
 }
@@ -55,6 +68,7 @@ tasks.processResources {
     inputs.property("version", project.version)
     inputs.property("minecraft_version", project.property("minecraft_version"))
     inputs.property("loader_version", project.property("loader_version"))
+    inputs.property("modmenu_version", project.property("modmenu_version"))
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
@@ -62,7 +76,8 @@ tasks.processResources {
             "version" to project.version,
             "minecraft_version" to (project.property("minecraft_version") as String),
             "loader_version" to (project.property("loader_version") as String),
-            "kotlin_loader_version" to (project.property("kotlin_loader_version") as String)
+            "kotlin_loader_version" to (project.property("kotlin_loader_version") as String),
+            "modmenu_version" to (project.property("modmenu_version") as String)
         )
     }
 }
