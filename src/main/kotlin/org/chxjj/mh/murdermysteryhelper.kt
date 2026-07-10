@@ -1,4 +1,4 @@
-package org.chxjj
+package org.chxjj.mh.main
 
 import net.fabricmc.api.ModInitializer
 

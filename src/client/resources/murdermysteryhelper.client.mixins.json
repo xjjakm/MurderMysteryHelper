@@ -4,6 +4,9 @@
   "package": "org.chxjj.mixin.client",
   "compatibilityLevel": "JAVA_25",
   "client": [
+    "org.chxjj.mh.mixin.client.ClientPacketListenerMixin",
+    "org.chxjj.mh.mixin.client.PlayerRendererMixin",
+    "org.chxjj.mh.mixin.client.EntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
