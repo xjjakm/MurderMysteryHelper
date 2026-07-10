@@ -1,12 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.chxjj.mixin.client",
+  "package": "org.chxjj.mh.mixin.client",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "org.chxjj.mh.mixin.client.ClientPacketListenerMixin",
-    "org.chxjj.mh.mixin.client.PlayerRendererMixin",
-    "org.chxjj.mh.mixin.client.EntityMixin"
+    "ClientPacketListenerMixin",
+    "EntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

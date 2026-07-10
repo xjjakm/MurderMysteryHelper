@@ -38,7 +38,7 @@ object MurderMysteryConfig {
             .name(Component.literal(name))
             .description(OptionDescription.of(Component.literal(desc)))
             .binding(default, getter, setter)
-            .controller { builder: BooleanControllerBuilder -> builder }
+            .controller { option: Option<Boolean> -> BooleanControllerBuilder.create(option) }
             .build()
     }
 
@@ -46,7 +46,7 @@ object MurderMysteryConfig {
         return Option.createBuilder<Float>()
             .name(Component.literal(name))
             .binding(default, getter, setter)
-            .controller { builder: FloatFieldControllerBuilder -> builder.range(0f, 255f) }
+            .controller { option: Option<Float> -> FloatFieldControllerBuilder.create(option).range(0f, 255f) }
             .build()
     }
 
@@ -59,7 +59,7 @@ object MurderMysteryConfig {
                     .name(Component.literal("Game Mode"))
                     .description(OptionDescription.of(Component.literal("Select the game mode")))
                     .binding(GameMode.CLASSIC, { mode }, { mode = it })
-                    .controller { builder: EnumControllerBuilder<GameMode> -> builder.enumClass(GameMode::class.java) }
+                    .controller { option: Option<GameMode> -> EnumControllerBuilder.create(option).enumClass(GameMode::class.java) }
                     .build()
             )
             .build()

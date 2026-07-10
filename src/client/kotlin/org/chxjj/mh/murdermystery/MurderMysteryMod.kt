@@ -14,7 +14,6 @@ import net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EquipmentSlot
-import net.minecraft.world.entity.decoration.ArmorStand
 import net.minecraft.world.item.BowItem
 import net.minecraft.world.item.ItemStack
 import org.chxjj.mh.MurderMysterySwordDetection
@@ -170,31 +169,6 @@ object MurderMysteryMod {
         if (playBowSound) {
             mc.soundManager.play(SimpleSoundInstance.forUI(SoundEvents.CROSSBOW_SHOOT, 1F))
             playBowSound = false
-        }
-
-        if (MurderMysteryConfig.showDroppedBow) {
-            renderDroppedBows(context)
-        }
-    }
-
-    private fun renderDroppedBows(context: LevelRenderContext) {
-        val level = mc.level ?: return
-        val matrices = context.poseStack()
-        val camera = mc.gameRenderer.mainCamera
-
-        for (entity in level.entitiesForRendering()) {
-            if (entity is ArmorStand) {
-                val mainHandItem = entity.getItemBySlot(EquipmentSlot.MAINHAND)
-                if (mainHandItem.item is BowItem && entity.isInvisible) {
-                    RenderUtils.renderBoxAroundEntity(
-                        matrices,
-                        camera,
-                        entity,
-                        127f / 255f, 255f / 255f, 212f / 255f, 100f / 255f,
-                        0f / 255f, 255f / 255f, 255f / 255f, 1f
-                    )
-                }
-            }
         }
     }
 
