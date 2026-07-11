@@ -3,7 +3,6 @@ package org.chxjj.mh.murdermystery
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
-import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents
 import net.minecraft.client.Minecraft
 import net.minecraft.client.multiplayer.ClientPacketListener
@@ -19,7 +18,7 @@ import net.minecraft.world.item.ItemStack
 import org.chxjj.mh.MurderMysterySwordDetection
 import org.chxjj.mh.config.GameMode
 import org.chxjj.mh.config.MurderMysteryConfig
-import java.util.UUID
+import java.util.*
 
 object MurderMysteryMod {
     private val mc = Minecraft.getInstance()
@@ -43,8 +42,8 @@ object MurderMysteryMod {
             onTick()
         })
 
-        LevelRenderEvents.AFTER_TRANSLUCENT_FEATURES.register(LevelRenderEvents.AfterTranslucentFeatures { context ->
-            onLevelRender(context)
+        LevelRenderEvents.AFTER_TRANSLUCENT_FEATURES.register(LevelRenderEvents.AfterTranslucentFeatures {
+            onLevelRender()
         })
 
         ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { _: ClientPacketListener, _, _: Minecraft ->
@@ -113,7 +112,7 @@ object MurderMysteryMod {
 
         if (murdererPlayers.add(entity.gameProfile.id)) {
             if (MurderMysteryConfig.chatMessageOnMurderer) {
-                sendChatMessage("§c[MurderMystery] §f${entity.gameProfile.name} §cis the murderer!")
+                sendChatMessage(Component.translatable("mh.notify.murderer", entity.gameProfile.name))
             }
             if (MurderMysteryConfig.playSoundOnMurderer) {
                 playHurtSound = true
@@ -126,7 +125,7 @@ object MurderMysteryMod {
 
         if (bowPlayers.add(entity.gameProfile.id)) {
             if (MurderMysteryConfig.chatMessageOnDetective) {
-                sendChatMessage("§9[MurderMystery] §f${entity.gameProfile.name} §9has a bow!")
+                sendChatMessage(Component.translatable("mh.notify.detective", entity.gameProfile.name))
             }
             if (MurderMysteryConfig.playSoundOnDetective) {
                 playBowSound = true
@@ -156,7 +155,7 @@ object MurderMysteryMod {
         }
     }
 
-    private fun onLevelRender(context: LevelRenderContext) {
+    private fun onLevelRender() {
         if (!MurderMysteryConfig.enabled) return
         if (mc.player == null) return
         if (mc.level == null) return
@@ -172,8 +171,8 @@ object MurderMysteryMod {
         }
     }
 
-    private fun sendChatMessage(message: String) {
-        mc.player?.sendSystemMessage(Component.literal(message))
+    private fun sendChatMessage(message: Component) {
+        mc.player?.sendSystemMessage(message)
     }
 
     private fun reset() {

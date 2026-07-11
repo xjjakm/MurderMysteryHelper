@@ -38,5 +38,7 @@
   "mh.config.notify.chatDetective.desc": "检测到侦探时在聊天框发送提示消息",
   "key.murdermysteryhelper.openconfig": "打开密室杀手助手配置",
   "category.murdermysteryhelper": "密室杀手助手",
-  "modmenu.descriptionTranslation.murdermysteryhelper": "一个玩《密室杀手》的助手——能检测持剑的凶手和持弓的侦探"
+  "modmenu.descriptionTranslation.murdermysteryhelper": "一个玩《密室杀手》的助手——能检测持剑的凶手和持弓的侦探",
+  "mh.notify.murderer": "§c[密室杀手] §f%s §c是杀手！",
+  "mh.notify.detective": "§9[密室杀手] §f%s §9有弓！"
 }
