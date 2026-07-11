@@ -2,6 +2,7 @@ package org.chxjj.mh.mixin.client
 
 import net.minecraft.client.multiplayer.ClientPacketListener
 import net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket
+import net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket
 import org.chxjj.mh.murdermystery.MurderMysteryMod
 import org.spongepowered.asm.mixin.Mixin
 import org.spongepowered.asm.mixin.injection.At
@@ -14,5 +15,14 @@ class ClientPacketListenerMixin {
     @Inject(method = ["handleSetEquipment"], at = [At("HEAD")])
     private fun onHandleSetEquipment(packet: ClientboundSetEquipmentPacket, ci: CallbackInfo) {
         MurderMysteryMod.handleEquipmentPacket(packet)
+    }
+
+    @Inject(method = ["handleSetPlayerTeamPacket"], at = [At("HEAD")], cancellable = true)
+    private fun onHandleSetPlayerTeam(packet: ClientboundSetPlayerTeamPacket, ci: CallbackInfo) {
+        if (packet.playerAction == ClientboundSetPlayerTeamPacket.Action.REMOVE
+            && packet.name == "MMHide"
+        ) {
+            ci.cancel()
+        }
     }
 }
