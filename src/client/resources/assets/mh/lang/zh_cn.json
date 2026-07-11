@@ -4,10 +4,10 @@
   "mh.config.category.highlight": "高亮",
   "mh.config.category.colors": "颜色",
   "mh.config.category.notifications": "通知",
-  "mh.config.general.enabled": "启用",
-  "mh.config.general.enabled.desc": "启用密室杀手助手",
+  "mh.config.general.enabled": "总开关",
+  "mh.config.general.enabled.desc": "启用密室杀手助手mod的所有功能",
   "mh.config.general.mode": "游戏模式",
-  "mh.config.general.mode.desc": "选择游戏模式\n\n经典模式：检测持剑的杀手和持弓的侦探\n暗杀模式：所有人都有武器，禁用武器检测",
+  "mh.config.general.mode.desc": "选择游戏模式\n\n经典模式：检测持剑的杀手和持弓的侦探\n暗杀模式：所有人都有武器，禁用武器检测，根据谁杀了人来判定杀手（实验性）",
   "mh.config.gamemode.classic": "经典模式",
   "mh.config.gamemode.assassination": "暗杀模式",
   "mh.config.highlight.murderer": "高亮杀手",
@@ -37,5 +37,6 @@
   "mh.config.notify.chatDetective": "检测到侦探时发送消息",
   "mh.config.notify.chatDetective.desc": "检测到侦探时在聊天框发送提示消息",
   "key.murdermysteryhelper.openconfig": "打开密室杀手助手配置",
-  "category.murdermysteryhelper": "密室杀手助手"
+  "category.murdermysteryhelper": "密室杀手助手",
+  "modmenu.descriptionTranslation.murdermysteryhelper": "一个玩《密室杀手》的助手——能检测持剑的凶手和持弓的侦探"
 }

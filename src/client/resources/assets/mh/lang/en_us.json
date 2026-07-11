@@ -4,10 +4,10 @@
   "mh.config.category.highlight": "Highlight",
   "mh.config.category.colors": "Colors",
   "mh.config.category.notifications": "Notifications",
-  "mh.config.general.enabled": "Enabled",
+  "mh.config.general.enabled": "Main switch",
   "mh.config.general.enabled.desc": "Enable the Murder Mystery helper",
   "mh.config.general.mode": "Game Mode",
-  "mh.config.general.mode.desc": "Select the game mode\n\nClassic: Detect murderers with swords and detectives with bows\nAssassination: Everyone has weapons, weapon detection disabled",
+  "mh.config.general.mode.desc": "Select the game mode\n\nClassic: Detect murderers with swords and detectives with bows\nAssassination: Everyone has weapons, weapon detection disabled,Determine the killer based on who killed someone (experimental)",
   "mh.config.gamemode.classic": "Classic",
   "mh.config.gamemode.assassination": "Assassination",
   "mh.config.highlight.murderer": "Highlight Murderer",
@@ -37,5 +37,6 @@
   "mh.config.notify.chatDetective": "Chat Message on Detective",
   "mh.config.notify.chatDetective.desc": "Send a chat message when a detective is detected",
   "key.murdermysteryhelper.openconfig": "Open Murder Mystery Helper Config",
-  "category.murdermysteryhelper": "Murder Mystery Helper"
+  "category.murdermysteryhelper": "Murder Mystery Helper",
+  "modmenu.descriptionTranslation.murdermysteryhelper": "A helper to play MurderMystery - detects murderers with swords and detectives with bows"
 }
