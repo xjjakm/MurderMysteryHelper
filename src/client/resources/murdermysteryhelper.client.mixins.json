@@ -6,7 +6,8 @@
   "client": [
     "ClientPacketListenerMixin",
     "EntityMixin",
-    "EntityRendererMixin"
+    "EntityRendererMixin",
+    "SynchedEntityDataMixin"
   ],
   "injectors": {
     "defaultRequire": 1
