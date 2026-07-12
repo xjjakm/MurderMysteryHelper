@@ -40,5 +40,6 @@
   "category.murdermysteryhelper": "Murder Mystery Helper",
   "modmenu.descriptionTranslation.murdermysteryhelper": "A helper to play MurderMystery - detects murderers with swords and detectives with bows",
   "mh.notify.murderer": "§c[MurderMystery] §f%s §cis the murderer!",
-  "mh.notify.detective": "§9[MurderMystery] §f%s §9has a bow!"
+  "mh.notify.detective": "§9[MurderMystery] §f%s §9has a bow!",
+  "mh.command.reset.success": "§a[MurderMystery] §fPlayer detection data has been reset"
 }

@@ -175,7 +175,7 @@ object MurderMysteryMod {
         mc.player?.sendSystemMessage(message)
     }
 
-    private fun reset() {
+    fun reset() {
         murdererPlayers.clear()
         bowPlayers.clear()
         currentPlayerType = PlayerType.NEUTRAL

@@ -40,5 +40,6 @@
   "category.murdermysteryhelper": "密室杀手助手",
   "modmenu.descriptionTranslation.murdermysteryhelper": "一个玩《密室杀手》的助手——能检测持剑的凶手和持弓的侦探",
   "mh.notify.murderer": "§c[密室杀手] §f%s §c是杀手！",
-  "mh.notify.detective": "§9[密室杀手] §f%s §9有弓！"
+  "mh.notify.detective": "§9[密室杀手] §f%s §9有弓！",
+  "mh.command.reset.success": "§a[密室杀手] §f已重置玩家检测数据"
 }
