@@ -1,5 +1,5 @@
 # MurderMysteryHelper
-一个简单的杀手检测mod
+一个简单的杀手检测mod，使用/mh reset 或重进子服（出现重新配置中）重置游戏
 
 ### 依赖
 Minecraft 26.1.2
