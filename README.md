@@ -1,6 +1,9 @@
 # MurderMysteryHelper
-一个简单的杀手检测mod，使用/mh reset 或重进子服（出现重新配置中）重置游戏
+一个简单的密室杀手（谁是杀手）检测杀手和侦探mod，使用/mh reset 或重进服务器(子服)（出现"重新配置"中）重置游戏
 
+使用[Fantnel](https://github.com/NirvanaTec/Fantnel)和[ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)即可游玩布吉岛
+
+可配置（默认按下右shift，可以在原版按键绑定杂项中配置；或者打开modmenu找到）
 ### 依赖
 Minecraft 26.1.2
 
