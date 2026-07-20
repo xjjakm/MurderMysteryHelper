@@ -17,7 +17,7 @@ import net.minecraft.world.item.BowItem
 import net.minecraft.world.item.ItemStack
 import org.chxjj.mh.MurderMysterySwordDetection
 import org.chxjj.mh.config.GameMode
-import org.chxjj.mh.config.MurderMysteryConfig
+import org.chxjj.mh.config.MurderMysteryConfigHandler
 import java.util.*
 
 object MurderMysteryMod {
@@ -56,7 +56,7 @@ object MurderMysteryMod {
     }
 
     private fun onTick() {
-        if (!MurderMysteryConfig.enabled) return
+        if (!MurderMysteryConfigHandler.instance.enabled) return
         if (mc.player == null) return
         if (mc.level == null) return
 
@@ -86,7 +86,7 @@ object MurderMysteryMod {
     }
 
     fun handleEquipmentPacket(packet: ClientboundSetEquipmentPacket) {
-        if (!MurderMysteryConfig.enabled) return
+        if (!MurderMysteryConfigHandler.instance.enabled) return
         val world = mc.level ?: return
         val entity = world.getEntity(packet.entity) ?: return
 
@@ -108,26 +108,26 @@ object MurderMysteryMod {
     }
 
     private fun handleHasSword(entity: AbstractClientPlayer) {
-        if (MurderMysteryConfig.mode == GameMode.ASSASSINATION) return
+        if (MurderMysteryConfigHandler.instance.mode == GameMode.ASSASSINATION) return
 
         if (murdererPlayers.add(entity.gameProfile.id)) {
-            if (MurderMysteryConfig.chatMessageOnMurderer) {
+            if (MurderMysteryConfigHandler.instance.chatMessageOnMurderer) {
                 sendChatMessage(Component.translatable("mh.notify.murderer", entity.gameProfile.name))
             }
-            if (MurderMysteryConfig.playSoundOnMurderer) {
+            if (MurderMysteryConfigHandler.instance.playSoundOnMurderer) {
                 playHurtSound = true
             }
         }
     }
 
     private fun handleHasBow(entity: AbstractClientPlayer) {
-        if (MurderMysteryConfig.mode == GameMode.ASSASSINATION) return
+        if (MurderMysteryConfigHandler.instance.mode == GameMode.ASSASSINATION) return
 
         if (bowPlayers.add(entity.gameProfile.id)) {
-            if (MurderMysteryConfig.chatMessageOnDetective) {
+            if (MurderMysteryConfigHandler.instance.chatMessageOnDetective) {
                 sendChatMessage(Component.translatable("mh.notify.detective", entity.gameProfile.name))
             }
-            if (MurderMysteryConfig.playSoundOnDetective) {
+            if (MurderMysteryConfigHandler.instance.playSoundOnDetective) {
                 playBowSound = true
             }
         }
@@ -156,7 +156,7 @@ object MurderMysteryMod {
     }
 
     private fun onLevelRender() {
-        if (!MurderMysteryConfig.enabled) return
+        if (!MurderMysteryConfigHandler.instance.enabled) return
         if (mc.player == null) return
         if (mc.level == null) return
 

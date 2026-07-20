@@ -2,12 +2,12 @@ package org.chxjj.mh.client
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory
 import com.terraformersmc.modmenu.api.ModMenuApi
-import org.chxjj.mh.config.MurderMysteryConfig
+import org.chxjj.mh.config.MurderMysteryConfigHandler
 
 class config : ModMenuApi {
     override fun getModConfigScreenFactory(): ConfigScreenFactory<*> {
         return ConfigScreenFactory { parent ->
-            MurderMysteryConfig.generateConfigScreen(parent)
+            MurderMysteryConfigHandler.generateConfigScreen(parent)
         }
     }
 }

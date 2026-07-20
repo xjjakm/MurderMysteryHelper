@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper
 import net.minecraft.client.KeyMapping
 import net.minecraft.network.chat.Component
-import org.chxjj.mh.config.MurderMysteryConfig
+import org.chxjj.mh.config.MurderMysteryConfigHandler
 import org.chxjj.mh.murdermystery.MurderMysteryMod
 import org.lwjgl.glfw.GLFW
 
@@ -26,11 +26,12 @@ class murdermysteryhelperClient : ClientModInitializer {
             )
         )
 
+        MurderMysteryConfigHandler.load()
         MurderMysteryMod.initialize()
 
         ClientTickEvents.END_CLIENT_TICK.register(ClientTickEvents.EndTick { client ->
             while (configKeyMapping.consumeClick()) {
-                client.setScreen(MurderMysteryConfig.generateConfigScreen(client.screen))
+                client.setScreen(MurderMysteryConfigHandler.generateConfigScreen(client.screen))
             }
         })
 

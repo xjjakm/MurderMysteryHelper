@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer
 import net.minecraft.client.renderer.entity.state.EntityRenderState
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.decoration.ArmorStand
-import org.chxjj.mh.config.MurderMysteryConfig
+import org.chxjj.mh.config.MurderMysteryConfigHandler
 import org.chxjj.mh.murdermystery.MurderMysteryMod
 import org.spongepowered.asm.mixin.Mixin
 import org.spongepowered.asm.mixin.injection.At
@@ -17,27 +17,27 @@ abstract class EntityRendererMixin {
 
     @Inject(method = ["extractRenderState"], at = [At("TAIL")])
     private fun modifyOutlineColor(entity: Entity, state: EntityRenderState, partialTicks: Float, ci: CallbackInfo) {
-        if (!MurderMysteryConfig.enabled) return
+        if (!MurderMysteryConfigHandler.instance.enabled) return
         if (state.outlineColor == 0) return
 
         if (entity is AbstractClientPlayer) {
             val playerType = MurderMysteryMod.getPlayerType(entity)
             val shouldGlow = when (playerType) {
-                MurderMysteryMod.PlayerType.MURDERER -> MurderMysteryConfig.highlightMurderer
-                MurderMysteryMod.PlayerType.DETECTIVE_LIKE -> MurderMysteryConfig.highlightDetective
+                MurderMysteryMod.PlayerType.MURDERER -> MurderMysteryConfigHandler.instance.highlightMurderer
+                MurderMysteryMod.PlayerType.DETECTIVE_LIKE -> MurderMysteryConfigHandler.instance.highlightDetective
                 else -> false
             }
             if (shouldGlow) {
                 val color = when (playerType) {
                     MurderMysteryMod.PlayerType.MURDERER -> rgbToArgb(
-                        MurderMysteryConfig.murdererRed.toInt(),
-                        MurderMysteryConfig.murdererGreen.toInt(),
-                        MurderMysteryConfig.murdererBlue.toInt()
+                        MurderMysteryConfigHandler.instance.murdererRed.toInt(),
+                        MurderMysteryConfigHandler.instance.murdererGreen.toInt(),
+                        MurderMysteryConfigHandler.instance.murdererBlue.toInt()
                     )
                     MurderMysteryMod.PlayerType.DETECTIVE_LIKE -> rgbToArgb(
-                        MurderMysteryConfig.detectiveRed.toInt(),
-                        MurderMysteryConfig.detectiveGreen.toInt(),
-                        MurderMysteryConfig.detectiveBlue.toInt()
+                        MurderMysteryConfigHandler.instance.detectiveRed.toInt(),
+                        MurderMysteryConfigHandler.instance.detectiveGreen.toInt(),
+                        MurderMysteryConfigHandler.instance.detectiveBlue.toInt()
                     )
                     else -> null
                 }
@@ -45,7 +45,7 @@ abstract class EntityRendererMixin {
             }
         }
 
-        if (entity is ArmorStand && MurderMysteryConfig.showDroppedBow) {
+        if (entity is ArmorStand && MurderMysteryConfigHandler.instance.showDroppedBow) {
             val mainHandItem = entity.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.MAINHAND)
             if (mainHandItem.item is net.minecraft.world.item.BowItem && entity.isInvisible) {
                 state.outlineColor = rgbToArgb(0, 255, 255)

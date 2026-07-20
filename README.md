@@ -5,7 +5,7 @@
 
 使用[Fantnel](https://github.com/NirvanaTec/Fantnel)和[ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)即可游玩布吉岛
 
-可配置（默认按下右shift，可以在原版按键绑定杂项中配置；或者打开modmenu找到）
+可配置（默认按下右shift，可以在原版按键绑定杂项中配置；或者打开modmenu找到，配置文件位于<你的游戏版本文件夹>/config/mh.json）
 ### 依赖
 Minecraft 26.1.2
 
