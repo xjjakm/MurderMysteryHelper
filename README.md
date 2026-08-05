@@ -7,7 +7,7 @@
 
 可配置（默认按下右shift，可以在原版按键绑定杂项中配置；或者打开modmenu找到，配置文件位于<你的游戏版本文件夹>/config/mh.json）
 ### 依赖
-Minecraft 26.1.2
+#### Minecraft 26.1.2
 
 [fabric-loader](https://github.com/FabricMC/fabric-loader)>= 0.19.3
 
@@ -19,7 +19,8 @@ Minecraft 26.1.2
 
 [ModMenu](https://github.com/TerraformersMC/ModMenu)>=18.0.0
 
-Minecraft 26.2
+#### Minecraft 26.2
+
 [fabric-loader](https://github.com/FabricMC/fabric-loader)>= 0.19.3
 
 [fabric-api](https://github.com/FabricMC/fabric-api)
