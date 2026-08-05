@@ -31,7 +31,7 @@ class murdermysteryhelperClient : ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(ClientTickEvents.EndTick { client ->
             while (configKeyMapping.consumeClick()) {
-                client.setScreen(MurderMysteryConfigHandler.generateConfigScreen(client.screen))
+                client.gui.setScreen(MurderMysteryConfigHandler.generateConfigScreen(client.gui.screen()))
             }
         })
 

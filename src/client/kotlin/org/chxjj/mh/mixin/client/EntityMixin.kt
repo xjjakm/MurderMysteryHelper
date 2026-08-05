@@ -13,11 +13,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 @Mixin(Entity::class)
 abstract class EntityMixin {
 
+    @Suppress("CAST_NEVER_SUCCEEDS")
     @Inject(method = ["isCurrentlyGlowing"], at = [At("HEAD")], cancellable = true)
     private fun modifyGlowing(ci: CallbackInfoReturnable<Boolean>) {
         if (!MurderMysteryConfigHandler.instance.enabled) return
 
-        val entity = (this as? Entity) ?: return
+        @Suppress("USELESS_CAST")
+        val entity = this as Entity
 
         if (entity is AbstractClientPlayer) {
             val playerType = MurderMysteryMod.getPlayerType(entity)
