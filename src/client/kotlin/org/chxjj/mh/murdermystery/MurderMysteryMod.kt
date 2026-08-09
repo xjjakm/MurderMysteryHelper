@@ -172,7 +172,9 @@ object MurderMysteryMod {
     }
 
     private fun sendChatMessage(message: Component) {
-        mc.player?.sendSystemMessage(message)
+        mc.execute {
+            mc.player?.sendSystemMessage(message)
+        }
     }
 
     fun reset() {
