@@ -64,20 +64,26 @@ dependencies {
     implementation("dev.isxander:yet-another-config-lib:${project.property("yacl_version")}")
 }
 
+val modVersion = version
+val minecraftVersion = project.property("minecraft_version") as String
+val loaderVersion = project.property("loader_version") as String
+val kotlinLoaderVersion = project.property("kotlin_loader_version") as String
+val modmenuVersion = project.property("modmenu_version") as String
+
 tasks.processResources {
-    inputs.property("version", project.version)
-    inputs.property("minecraft_version", project.property("minecraft_version"))
-    inputs.property("loader_version", project.property("loader_version"))
-    inputs.property("modmenu_version", project.property("modmenu_version"))
+    inputs.property("version", modVersion)
+    inputs.property("minecraft_version", minecraftVersion)
+    inputs.property("loader_version", loaderVersion)
+    inputs.property("modmenu_version", modmenuVersion)
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand(
-            "version" to project.version,
-            "minecraft_version" to (project.property("minecraft_version") as String),
-            "loader_version" to (project.property("loader_version") as String),
-            "kotlin_loader_version" to (project.property("kotlin_loader_version") as String),
-            "modmenu_version" to (project.property("modmenu_version") as String)
+            "version" to modVersion,
+            "minecraft_version" to minecraftVersion,
+            "loader_version" to loaderVersion,
+            "kotlin_loader_version" to kotlinLoaderVersion,
+            "modmenu_version" to modmenuVersion
         )
     }
 }

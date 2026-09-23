@@ -13,7 +13,7 @@ class SynchedEntityDataMixin {
     @Suppress("unused")
     private val itemsById: Array<SynchedEntityData.DataItem<*>?>? = null
 
-    @ModifyVariable(method = ["assignValues"], at = At("HEAD"), argsOnly = true)
+    @ModifyVariable(method = ["assignValues"], at = [At("HEAD")], argsOnly = true, ordinal = 0)
     private fun filterItems(items: List<SynchedEntityData.DataValue<*>>): List<SynchedEntityData.DataValue<*>> {
         val array = itemsById ?: return items
         val maxId = array.size - 1

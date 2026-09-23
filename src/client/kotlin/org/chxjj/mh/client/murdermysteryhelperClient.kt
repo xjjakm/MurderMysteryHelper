@@ -9,7 +9,7 @@ import net.minecraft.client.KeyMapping
 import net.minecraft.network.chat.Component
 import org.chxjj.mh.config.MurderMysteryConfigHandler
 import org.chxjj.mh.murdermystery.MurderMysteryMod
-import org.lwjgl.glfw.GLFW
+import com.mojang.blaze3d.platform.InputConstants
 
 class murdermysteryhelperClient : ClientModInitializer {
 
@@ -21,7 +21,7 @@ class murdermysteryhelperClient : ClientModInitializer {
         configKeyMapping = KeyMappingHelper.registerKeyMapping(
             KeyMapping(
                 "key.murdermysteryhelper.openconfig",
-                GLFW.GLFW_KEY_RIGHT_SHIFT,
+                InputConstants.KEY_RSHIFT,
                 KeyMapping.Category.MISC
             )
         )

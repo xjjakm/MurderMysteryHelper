@@ -74,9 +74,6 @@ object MurderMysterySwordDetection {
             // MC 26.1+: SwordItem/PickaxeItem removed, use data components
             itemStack.has(DataComponents.WEAPON) -> true
             itemStack.has(DataComponents.TOOL) -> true
-            item is AxeItem -> true
-            item is HoeItem -> true
-            item is ShovelItem -> true
             item is BoatItem -> true
             item is BlockItem -> KNOWN_SWORD_BLOCKS.contains(item.block)
             else -> false
