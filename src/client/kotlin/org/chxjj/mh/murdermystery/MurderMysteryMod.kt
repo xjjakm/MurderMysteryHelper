@@ -1,6 +1,7 @@
 package org.chxjj.mh.murdermystery
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLevelEvents
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents
@@ -31,6 +32,9 @@ object MurderMysteryMod {
 
     private var currentPlayerType = PlayerType.NEUTRAL
 
+    /** 玩家实体 ID 变化检测（多世界插件换房间/重生时实体重建，但不会触发 JOIN 事件） */
+    private var lastPlayerEntityId = -1
+
     enum class PlayerType {
         NEUTRAL,
         DETECTIVE_LIKE,
@@ -53,6 +57,11 @@ object MurderMysteryMod {
         ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _: ClientPacketListener, _: Minecraft ->
             reset()
         })
+
+        // 多世界插件切换房间 = 客户端换世界（不触发 JOIN/DISCONNECT）
+        ClientLevelEvents.AFTER_CLIENT_LEVEL_CHANGE.register(ClientLevelEvents.AfterClientLevelChange { _: Minecraft, _: net.minecraft.client.multiplayer.ClientLevel ->
+            reset()
+        })
     }
 
     private fun onTick() {
@@ -62,6 +71,13 @@ object MurderMysteryMod {
 
         val player = mc.player!!
         currentPlayerType = getPlayerTypeFromHand(player)
+
+        // 玩家实体被服务器重建（同维度重开房间/重生）时重置检测数据
+        val entityId = player.id
+        if (lastPlayerEntityId != -1 && entityId != lastPlayerEntityId) {
+            reset()
+        }
+        lastPlayerEntityId = entityId
 
         checkWorldPlayers()
     }
@@ -183,5 +199,7 @@ object MurderMysteryMod {
         currentPlayerType = PlayerType.NEUTRAL
         playHurtSound = false
         playBowSound = false
+        lastPlayerEntityId = -1
+        org.chxjj.mh.hud.MurderMysteryHud.clear()
     }
 }

@@ -1,7 +1,7 @@
 # MurderMysteryHelper
 一个简单的密室杀手（谁是杀手）检测杀手和侦探mod，使用/mh reset 或重进服务器(子服)（出现"重新配置"中）重置游戏
 
-在Github Actions上下载
+在Github Actions上下载，部分版本有发行
 
 使用[Fantnel](https://github.com/NirvanaTec/Fantnel)和[ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)即可游玩布吉岛
 

@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper
 import net.minecraft.client.KeyMapping
 import net.minecraft.network.chat.Component
 import org.chxjj.mh.config.MurderMysteryConfigHandler
+import org.chxjj.mh.hud.MurderMysteryHud
 import org.chxjj.mh.murdermystery.MurderMysteryMod
 import com.mojang.blaze3d.platform.InputConstants
 
@@ -28,6 +29,7 @@ class murdermysteryhelperClient : ClientModInitializer {
 
         MurderMysteryConfigHandler.load()
         MurderMysteryMod.initialize()
+        MurderMysteryHud.initialize()
 
         ClientTickEvents.END_CLIENT_TICK.register(ClientTickEvents.EndTick { client ->
             while (configKeyMapping.consumeClick()) {

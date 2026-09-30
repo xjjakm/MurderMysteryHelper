@@ -7,6 +7,8 @@ import dev.isxander.yacl3.api.YetAnotherConfigLib
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder
 import dev.isxander.yacl3.api.controller.EnumControllerBuilder
 import dev.isxander.yacl3.api.controller.FloatFieldControllerBuilder
+import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder
+import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler
 import dev.isxander.yacl3.config.v2.api.SerialEntry
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder
@@ -109,6 +111,19 @@ class MurderMysteryConfig {
 
     @SerialEntry
     var nameTagCivilianBlue = 85f
+
+    // ========== HUD ==========
+    @SerialEntry
+    var hudEnabled = true
+
+    @SerialEntry
+    var hudX = 10
+
+    @SerialEntry
+    var hudY = 10
+
+    @SerialEntry
+    var hudBgAlpha = 192
 
     fun nameTagMurdererColor(): Int = toRgb(nameTagMurdererRed, nameTagMurdererGreen, nameTagMurdererBlue)
 
@@ -214,6 +229,35 @@ object MurderMysteryConfigHandler {
             .option(floatOption("mh.config.colors.detectiveBlue", "mh.config.colors.detectiveBlue.desc", 255f, { cfg.detectiveBlue }, { cfg.detectiveBlue = it }))
             .build()
 
+        val hudCategory = ConfigCategory.createBuilder()
+            .name(Component.translatable("mh.config.category.hud"))
+            .option(boolOption("mh.config.hud.enabled", "mh.config.hud.enabled.desc", true, { cfg.hudEnabled }, { cfg.hudEnabled = it }))
+            .option(
+                Option.createBuilder<Int>()
+                    .name(Component.translatable("mh.config.hud.x"))
+                    .description(OptionDescription.of(Component.translatable("mh.config.hud.x.desc")))
+                    .binding(10, { cfg.hudX }, { cfg.hudX = it })
+                    .controller { option: Option<Int> -> IntegerFieldControllerBuilder.create(option).range(0, 8192) }
+                    .build()
+            )
+            .option(
+                Option.createBuilder<Int>()
+                    .name(Component.translatable("mh.config.hud.y"))
+                    .description(OptionDescription.of(Component.translatable("mh.config.hud.y.desc")))
+                    .binding(10, { cfg.hudY }, { cfg.hudY = it })
+                    .controller { option: Option<Int> -> IntegerFieldControllerBuilder.create(option).range(0, 8192) }
+                    .build()
+            )
+            .option(
+                Option.createBuilder<Int>()
+                    .name(Component.translatable("mh.config.hud.alpha"))
+                    .description(OptionDescription.of(Component.translatable("mh.config.hud.alpha.desc")))
+                    .binding(192, { cfg.hudBgAlpha }, { cfg.hudBgAlpha = it })
+                    .controller { option: Option<Int> -> IntegerSliderControllerBuilder.create(option).range(0, 255).step(1) }
+                    .build()
+            )
+            .build()
+
         val notifyCategory = ConfigCategory.createBuilder()
             .name(Component.translatable("mh.config.category.notifications"))
             .option(boolOption("mh.config.notify.soundMurderer", "mh.config.notify.soundMurderer.desc", true, { cfg.playSoundOnMurderer }, { cfg.playSoundOnMurderer = it }))
@@ -228,6 +272,7 @@ object MurderMysteryConfigHandler {
             .category(highlightCategory)
             .category(nametagCategory)
             .category(colorCategory)
+            .category(hudCategory)
             .category(notifyCategory)
             .save { save() }
             .build()
