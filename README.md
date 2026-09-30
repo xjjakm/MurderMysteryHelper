@@ -30,3 +30,15 @@
 [YetAnotherConfigLib](https://github.com/isXander/YetAnotherConfigLib)>=3.9.6+26.2-fabric
 
 [ModMenu](https://github.com/TerraformersMC/ModMenu)>=20.0.1
+
+#### Minecraft 26.3
+
+[fabric-loader](https://github.com/FabricMC/fabric-loader)>= 0.19.5
+
+[fabric-api](https://github.com/FabricMC/fabric-api)
+
+[fabric-language-kotlin](https://github.com/FabricMC/fabric-language-kotlin)>=1.14.1+kotlin.2.4.20
+
+[YetAnotherConfigLib](https://github.com/isXander/YetAnotherConfigLib)>=3.9.7+26.3-fabric
+
+[ModMenu](https://github.com/TerraformersMC/ModMenu)>=21.0.0
