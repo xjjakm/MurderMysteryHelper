@@ -3,6 +3,8 @@ package org.chxjj.mh.mixin.client
 import net.minecraft.client.player.AbstractClientPlayer
 import net.minecraft.client.renderer.entity.EntityRenderer
 import net.minecraft.client.renderer.entity.state.EntityRenderState
+import net.minecraft.network.chat.Component
+import net.minecraft.network.chat.TextColor
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.decoration.ArmorStand
 import org.chxjj.mh.config.MurderMysteryConfigHandler
@@ -16,7 +18,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo
 abstract class EntityRendererMixin {
 
     @Inject(method = ["extractRenderState"], at = [At("TAIL")])
-    private fun modifyOutlineColor(entity: Entity, state: EntityRenderState, partialTicks: Float, ci: CallbackInfo) {
+    private fun modifyRenderState(entity: Entity, state: EntityRenderState, partialTicks: Float, ci: CallbackInfo) {
+        if (MurderMysteryConfigHandler.instance.enabled
+            && entity is AbstractClientPlayer
+            && state.nameTag != null
+        ) {
+            applyRoleNameTag(entity, state)
+        }
+
         if (!MurderMysteryConfigHandler.instance.enabled) return
         if (state.outlineColor == 0) return
 
@@ -51,6 +60,25 @@ abstract class EntityRendererMixin {
                 state.outlineColor = rgbToArgb(0, 255, 255)
             }
         }
+    }
+
+    private fun applyRoleNameTag(player: AbstractClientPlayer, state: EntityRenderState) {
+        val cfg = MurderMysteryConfigHandler.instance
+
+        val (show, color, key) = when (MurderMysteryMod.getPlayerType(player)) {
+            MurderMysteryMod.PlayerType.MURDERER -> Triple(cfg.nameTagMurderer, cfg.nameTagMurdererColor(), "mh.nametag.murderer")
+            MurderMysteryMod.PlayerType.DETECTIVE_LIKE -> Triple(cfg.nameTagBow, cfg.nameTagBowColor(), "mh.nametag.bow")
+            MurderMysteryMod.PlayerType.NEUTRAL -> Triple(cfg.nameTagCivilian, cfg.nameTagCivilianColor(), "mh.nametag.civilian")
+        }
+        if (!show) return
+
+        val textColor = TextColor.fromRgb(color)
+        val original = state.nameTag!!
+
+        state.nameTag = Component.empty()
+            .append(Component.translatable(key).withStyle { it.withColor(textColor) })
+            .append(" ")
+            .append(original.copy().withStyle { it.withColor(textColor) })
     }
 
     private fun rgbToArgb(r: Int, g: Int, b: Int): Int {
